@@ -49,7 +49,7 @@ class Home extends Component {
         let token = sessionStorage.getItem("access-token");
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                let vdata = JSON.parse(this.responseText).data;
+                let responseData = JSON.parse(this.responseText).data;
                 that.setState({ userImages: JSON.parse(this.responseText).data });
                 JSON.parse(this.responseText).data.forEach(function (image, index) {
                     xhrImageData[index] = new XMLHttpRequest();
@@ -57,9 +57,9 @@ class Home extends Component {
                     xhrImageData[index].send(dataImage);
                     xhrImageData[index].onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
-                            vdata[index].media_url = JSON.parse(this.responseText).media_url;
-                            vdata[index].timestamp = JSON.parse(this.responseText).timestamp;
-                            that.setState({ userImages: vdata });
+                            responseData[index].media_url = JSON.parse(this.responseText).media_url;
+                            responseData[index].timestamp = JSON.parse(this.responseText).timestamp;
+                            that.setState({ userImages: responseData });
                         }
                     }
                 })
