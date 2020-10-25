@@ -1,0 +1,36 @@
+.postcardBlock {
+  height: 45%;
+  width: 45%;
+  min-height: 350px;
+  min-width: 400px;
+  margin: 2%;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .addButton{
+      margin: 2%;
+      float: right;
+  }
+  .likedButton{
+      float:"left";
+      color: red;
+      margin-right: 5px;    
+  }
+  .likeButton{
+    float:"left";
+    margin-right: 5px;    
+  }
+.formControl{
+    width:200px;
+}
+.imageBlock{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
