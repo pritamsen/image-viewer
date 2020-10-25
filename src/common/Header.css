@@ -1,0 +1,27 @@
+.pageHeader{
+    background-color: #263238;
+    display: flex;
+    justify-content: space-between;
+    height: 32px;
+    padding: 16px 8px 16px 8px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 30px;
+}
+.searchBar{
+    margin-right:10px;
+}
+.topRightHeaderBlock{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+.searchMask{
+    display: flex;
+    justify-content: space-evenly;
+    text-align:center;
+}
+.side-logo{
+    display: flex;
+    padding-left:"20px";
+}
