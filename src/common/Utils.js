@@ -4,22 +4,7 @@ var Utils = {
       "password": "pass"
   },
   "auth": {
-      "access-token": "IGQVJYeEYzcGtsSTJDbnphRzdBblZAXUXFjQkEtUjdkNHE3dmV2SFpxQy1VRTBjS1VJb201UWpJbG8wQkZA4ZAEtnLWl4LUwzeVlWUGFEOWFOc0hfNjdaUFRFRFZABYU13RWNhd1k4Qkw1dzdjUVBwcW1tSQZDZD"
-  },
-  "api":
-  {
-      "mock": false,
-      "endpoints":
-          [
-              {
-                  "name": "Get Posts",
-                  "uri": "https://graph.instagram.com/me/media?fields=id,caption&access_token=$accessToken"
-              },
-              {
-                  "name": "Get Post Details",
-                  "uri": "https://graph.instagram.com/$postId?fields=id,media_type,media_url,username,timestamp&access_token=$accessToken"
-              }
-          ]
+      "access-token": "IGQVJVTUtTNUVYZAkdGVk5zNS1WMnZAPTDNFanVIQkRvWWdsSmlfRHdRMkRRSzRkVjFtMkdrOERPQ0JmZA1AyZAVZA3dmx4WVI2ZAzdzZA0JHcG1GYkYxU3hRbHhHOW9oODhhd1dSblZA4VTc5Vi1qOXhwV2NGYgZDZD"
   }
 };
 export default Utils;
