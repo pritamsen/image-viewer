@@ -1,0 +1,20 @@
+.cardSet{
+  width: 30%;
+  padding: 32px 32px 32px 32px;
+  margin: 2% auto;
+  text-align: left;
+  border-color:rgb(241, 230, 230);   
+}
+.formControl{
+    width: 100%;
+}
+.colorRed {
+  color: red;
+}
+.displayNone {
+    display: none;
+}
+
+.displayBlock {
+    display: block;
+}
