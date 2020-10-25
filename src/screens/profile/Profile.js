@@ -110,25 +110,25 @@ class Profile extends Component {
         xhruserName.open("GET", "https://graph.instagram.com/me?fields=username&access_token=" + token);
         xhruserName.send(dataUserName);
     }
-    handleClose = () => {
+    closeHandle = () => {
         this.state.open = false;
         this.setState(this.state);
     }
-    handleOpen = () => {
+    openHandle = () => {
         this.state.open = true;
         this.setState(this.state);
     }
-    OpenImageModal = (image) => {
+    imageModalOpen = (image) => {
         this.state.Imageopen = true;
         this.state.ImageUrl = image.media_url;
         this.state.ImageCaption = image.caption;
         this.setState(this.state);
     }
-    CloseImageModal = () => {
+    imageModalClose = () => {
         this.state.Imageopen = false;
         this.setState(this.state);
     }
-    inputFullNameChangeHandler = (e) => {
+    updateFullNameHandler = (e) => {
         this.setState({ fullname: e.target.value });
     }
     UpdateClickHandler = () => {
@@ -139,16 +139,16 @@ class Profile extends Component {
             this.setState(this.state);
         }
     }
-    favClickHandler = () => {
+    updateFavClickHandler = () => {
         this.setState({ favClick: !this.state.favClick, likeCount: !this.state.favClick ? this.state.likeCount + 1 : this.state.likeCount - 1 })
     }
-    inputCommentHandler = (e) => {
-        this.setState({ comment: e.target.value });
+    addCommentHandler = () => {
+        let Addcomments = this.state.comments;
+        Addcomments.push(this.state.comment);
+        this.setState({ commentAdded: true, comments:Addcomments});
     }
-    commentAddHandler = () => {
-        let Vcomments = this.state.comments;
-        Vcomments.push(this.state.comment);
-        this.setState({ commentAdded: true, comments:Vcomments});
+    updateCommentHandler = (e) => {
+        this.setState({ comment: e.target.value });
     }
     render() {
         const { classes } = this.props;
@@ -167,20 +167,20 @@ class Profile extends Component {
                         </div>
                         <div className="pname-container" style={{paddingLeft:"25px"}}>
                             <Typography variant="h6" className={classes.fullName} >{this.state.profilefullname}</Typography>
-                            <Button variant="fab" color="secondary" onClick={this.handleOpen}><EditIcon></EditIcon></Button>
+                            <Button variant="fab" color="secondary" onClick={this.openHandle}><EditIcon></EditIcon></Button>
                         </div>
                     </div>
                     <Modal
                         ariaHideApp={false}
                         isOpen={this.state.open}
                         contentLabel="Edit"
-                        onRequestClose={this.handleClose}
+                        onRequestClose={this.closeHandle}
                         style={customStyles}>
                         <div>
-                            <Typography variant="h4">Edit</Typography>
+                            <Typography variant="h5">Edit</Typography>
                             <FormControl required className="formControl">
                                 <InputLabel htmlFor="fullname">Full Name</InputLabel>
-                                <Input id="fullname" type="text" fullname={this.state.fullname} onChange={this.inputFullNameChangeHandler}></Input>
+                                <Input id="fullname" type="text" fullname={this.state.fullname} onChange={this.updateFullNameHandler}></Input>
                                 <FormHelperText className={this.state.fullnameRequired}>
                                     <span className="red">required</span>
                                 </FormHelperText>
@@ -194,14 +194,14 @@ class Profile extends Component {
                 <div className="gridBlock">
                     <GridList cellHeight={400} cols={4} className={classes.gridList} style={{justifyContent:"center"}}>
                         {this.state.userImages.map(image => (
-                            <img alt="insta-images" style={{width:"30%"}} src={image.media_url} className={classes.gridImages} onClick={this.OpenImageModal.bind(this, image)}></img>
+                            <img alt="insta-images" style={{width:"30%"}} src={image.media_url} className={classes.gridImages} onClick={this.imageModalOpen.bind(this, image)}></img>
                         ))}
                     </GridList>
                     <Modal
                         ariaHideApp={false}
                         isOpen={this.state.Imageopen}
                         contentLabel="ImageDetail"
-                        onRequestClose={this.CloseImageModal}
+                        onRequestClose={this.imageModalClose}
                         style={customStyles}>
                         <div className="image-modalBlock">
                                 <img alt="images" style={{width: "50%",float:"left"}} src={this.state.ImageUrl}></img>
@@ -217,14 +217,14 @@ class Profile extends Component {
                                         <span><b>Pritam Sen:</b><span>{this.state.comment}</span></span>
                                     </div>))}
                                 <div style={{ paddingTop: "90%", paddingLeft: "5%" }}>
-                                    <div className="like-container">
-                                        {this.state.favClick ? <FavoriteIcon className="favorite" fontSize="large" onClick={this.favClickHandler}></FavoriteIcon> : <FavoriteBorderIcon className="favoriteB" fontSize="large" onClick={this.favClickHandler}></FavoriteBorderIcon>}
+                                    <div className="likeContainer">
+                                        {this.state.favClick ? <FavoriteIcon className="likedButton" fontSize="medium" onClick={this.updateFavClickHandler}></FavoriteIcon> : <FavoriteBorderIcon className="likeButton" fontSize="medium" onClick={this.updateFavClickHandler}></FavoriteBorderIcon>}
                                         <span><b>{this.state.likeCount + " Likes"}</b></span>
                                     </div>
-                                    <Button variant="contained" className="addButton" color="primary" onClick={this.commentAddHandler} >Add</Button>
+                                    <Button variant="contained" className="addButton" color="primary" onClick={this.addCommentHandler} >Add</Button>
                                     <FormControl required className="formControl">
                                         <InputLabel htmlFor="comment">Add a comment</InputLabel>
-                                        <Input id="comment" comment={this.state.comment} type="text" onChange={this.inputCommentHandler}></Input>
+                                        <Input id="comment" comment={this.state.comment} type="text" onChange={this.updateCommentHandler}></Input>
                                     </FormControl>
                                 </div>
                             </div>

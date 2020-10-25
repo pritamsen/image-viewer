@@ -44,3 +44,10 @@
   width: 150px;
   height: 150px;
 }
+.likedButton{
+  color: red;
+  margin-right: 5px;    
+}
+.likeButton{
+margin-right: 5px;    
+}
