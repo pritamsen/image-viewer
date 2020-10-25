@@ -45,17 +45,17 @@ class Home extends Component {
         let dataImage = null;
         let xhr = new XMLHttpRequest();
         let that = this;
-        let xhrImageData = [];
+        let xhrPostData = [];
         let token = sessionStorage.getItem("access-token");
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 let responseData = JSON.parse(this.responseText).data;
                 that.setState({ userImages: JSON.parse(this.responseText).data });
                 JSON.parse(this.responseText).data.forEach(function (image, index) {
-                    xhrImageData[index] = new XMLHttpRequest();
-                    xhrImageData[index].open("GET", "https://graph.instagram.com/" + image.id + "?fields=id,media_type,media_url,username,timestamp&access_token=" + token);
-                    xhrImageData[index].send(dataImage);
-                    xhrImageData[index].onreadystatechange = function () {
+                    xhrPostData[index] = new XMLHttpRequest();
+                    xhrPostData[index].open("GET", "https://graph.instagram.com/" + image.id + "?fields=id,media_type,media_url,username,timestamp&access_token=" + token);
+                    xhrPostData[index].send(dataImage);
+                    xhrPostData[index].onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
                             responseData[index].media_url = JSON.parse(this.responseText).media_url;
                             responseData[index].timestamp = JSON.parse(this.responseText).timestamp;
@@ -68,16 +68,16 @@ class Home extends Component {
         })
         xhr.open("GET", "https://graph.instagram.com/me/media?fields=id,caption&access_token=" + token);
         xhr.send(data);
-        let dataUserName = null;
-        let xhruserName = new XMLHttpRequest();
-        xhruserName.onreadystatechange = function () {
+        let setUserName = null;
+        let xhrgetUserName = new XMLHttpRequest();
+        xhrgetUserName.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 let userName = JSON.parse(this.responseText).username;
                 that.setState({ userName: userName });
             }
         }
-        xhruserName.open("GET", "https://graph.instagram.com/me?fields=username&access_token=" + token);
-        xhruserName.send(dataUserName);
+        xhrgetUserName.open("GET", "https://graph.instagram.com/me?fields=username&access_token=" + token);
+        xhrgetUserName.send(setUserName);
     }
     searchMask = (event) => {
         let keyword = event.target.value;
@@ -90,13 +90,13 @@ class Home extends Component {
         this.setState({ comment: e.target.value });
     }
     commentAddHandler = (id) => {
-        let Vcomments = this.state.comments;
-       let  Icomments = {
+        let addComments = this.state.comments;
+       let  newComments = {
             com :this.state.comment,
             imageId : id.id
         }
-        Vcomments.push(Icomments);
-        this.setState({ commentAdded: true, comments: Vcomments});
+        addComments.push(newComments);
+        this.setState({ commentAdded: true, comments: addComments});
     }
     render() {
         const { classes } = this.props;
