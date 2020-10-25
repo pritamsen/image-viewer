@@ -1,0 +1,46 @@
+.info-block{
+  display: flex;
+  padding-top: 2%;
+  padding-left: 2%;
+  justify-content: center;
+}
+.details-block{
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+}
+.typoG{
+  padding-top: 5px;
+  padding-left: 25px;
+  padding-right:5px;
+}
+.pname-container{
+  display: flex;
+  margin-top: 5px;
+}
+.displayNone {
+  display: none;
+}
+.displayBlock {
+  display: block;
+}
+.gridBlock{
+  margin-top: 50px;
+    margin-bottom: auto;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.image-modalBlock{
+  display: flex;
+  height: 450px;
+}
+.image-headerBlock{
+  display: flex;
+}
+.MuiAvatar-img-21 {
+  width: 150px;
+  height: 150px;
+}
